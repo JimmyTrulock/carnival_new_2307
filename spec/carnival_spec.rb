@@ -48,3 +48,21 @@ describe "#ride" do
   end
 end
 
+describe '#most_popular_ride' do
+  it 'returns most ridden ride' do
+    carnival1 = Carnival.new(14)
+    ride1 = Ride.new({ name: 'Carousel', min_height: 24, admission_fee: 1, excitement: :gentle })
+    ride2 = Ride.new({ name: 'Ferris Wheel', min_height: 36, admission_fee: 5, excitement: :gentle })
+    visitor1 = Visitor.new('Bruce', 54, '$10')
+    visitor2 = Visitor.new('Tucker', 36, '$5')
+    carnival1.add_ride(ride1)
+    carnival1.add_ride(ride2)
+    ride1.board_rider(visitor1)
+    ride1.board_rider(visitor2)
+    ride2.board_rider(visitor1)
+
+    expect(carnival1.most_popular_ride).to eq(ride1)
+  end
+end
+
+

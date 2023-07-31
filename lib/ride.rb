@@ -1,7 +1,7 @@
 require "./lib/visitor"
 
 class Ride
-  attr_reader :name, :min_height, :admission_fee, :excitement, :total_revenue, :rider_log
+  attr_reader :name, :min_height, :admission_fee, :excitement, :total_revenue, :rider_log, :ridden
 
   def initialize(data)
     @name = data[:name]
@@ -10,6 +10,7 @@ class Ride
     @excitement = data[:excitement]
     @total_revenue = 0
     @rider_log = {}
+    @ridden = 0
   end
 
   def board_rider(visitor)
@@ -20,6 +21,7 @@ class Ride
     end
     visitor.ride(@admission_fee)
     @total_revenue += @admission_fee
+    @ridden += 1
   end
 end
 
